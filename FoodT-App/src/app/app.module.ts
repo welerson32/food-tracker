@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //ComponentsImports
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './Home/home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { MapComponent } from './Home/map/map.component';
 
 //MaterialModules
 import {A11yModule} from '@angular/cdk/a11y';
@@ -54,16 +56,22 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import { RegisterComponent } from './login/register/register.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    SidebarComponent
+    SidebarComponent,
+    MapComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NgMatSearchBarModule,

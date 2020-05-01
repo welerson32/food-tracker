@@ -1,8 +1,68 @@
-<div id="map"></div>
+<mat-drawer-container class="sideBar-container" autosize>
+    <div class="toolbar" role="banner">
+        <div class="sideBar-sidenav-content">
+            <button type="button" mat-button (click)="drawer.toggle()" class="menu-button">
+                <mat-icon>dehaze</mat-icon> &nbsp;
+                <span>Menu</span>
+            </button>
+        </div>
 
-<div id="home-opt">
-    <div id="main-home">
-        
+        <form class="search-form">
+            <mat-form-field class="search-full-width">
+                <input matInput placeholder="Buscar..." value="">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        </form>
+
     </div>
-</div>
 
+    <mat-drawer #drawer class="sideBar-sidenav" mode="over">
+        <div class="divCard">
+            <mat-card class="sideBar-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="sideBar-header-image"></div>
+                    <mat-card-title>Nome Usuario</mat-card-title>
+                    <mat-card-subtitle class="sideBar-card-subtitle">Dog Breed</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>
+                        Olá, Usuario!
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button>
+                        <mat-icon>settings</mat-icon>
+                    </button>
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    <button mat-button>
+                        <mat-icon>logout</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+
+        <div class="side-menu">
+            <br>
+            <button type="button" type="button" mat-button (click)="drawer.toggle()">
+                <mat-icon>dialpad</mat-icon> &nbsp;
+                <span>Meu Cardápio</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button type="button" mat-button (click)="drawer.toggle()">
+                <mat-icon>voicemail</mat-icon> &nbsp;
+                <span>Restaurantes</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button type="button" mat-button (click)="drawer.toggle()">
+                <mat-icon>notifications_off</mat-icon> &nbsp;
+                <span>Disable alerts</span>
+            </button>
+        </div>
+
+    </mat-drawer>
+    <app-map></app-map>
+</mat-drawer-container>

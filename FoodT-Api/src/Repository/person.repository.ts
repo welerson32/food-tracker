@@ -8,8 +8,13 @@ export class PersonRepo extends BaseMongoRepo {
         super(collectionName);
     }
 
-    async insert(obj:any){
-        obj = await super.insert(obj);
+    async register(obj: any) {
+        obj = await super.insertOne(obj);
+        return obj;
+    }
+
+    async update(obj: any) {
+        obj = await super.update(obj);
         return obj;
     }
 

@@ -2,10 +2,10 @@
   "name": "poc-migration",
   "version": "1.0.0",
   "description": "poc de teste para migração de dados mssql para mongo",
-  "main": "index.ts",
+  "main": "server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server"
+    "start": "nodemon index"
   },
   "author": "Welerson Freitas",
   "license": "ISC",
