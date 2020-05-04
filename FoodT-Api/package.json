@@ -10,12 +10,13 @@
   "author": "Welerson Freitas",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongodb": "^3.5.2",
-    "mssql": "^6.0.1",
     "mongoose": "^5.9.5",
+    "mssql": "^6.0.1",
     "request": "^2.88.2",
     "ts-node": "^8.8.1",
     "typescript": "^3.8.3"

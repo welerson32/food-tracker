@@ -1,8 +1,8 @@
 import { BaseMongoRepo } from './infrastructure/base.mongo.repo';
 
-const collectionName = "person"
+const collectionName = "truck"
 
-export class PersonRepo extends BaseMongoRepo {
+export class TruckRepo extends BaseMongoRepo {
 
     constructor() {
         super(collectionName);

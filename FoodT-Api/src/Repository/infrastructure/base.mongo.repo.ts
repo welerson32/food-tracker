@@ -2,7 +2,7 @@ import { Db, MongoClient, MongoClientOptions, ObjectID } from 'mongodb';
 
 export class BaseMongoRepo {
 
-    protected dbName = "test";
+    protected dbName = "food-tracker";
     private collectionName: string;
     private connUri = `mongodb+srv://teste:wfg24002@cluster0-haqrh.gcp.mongodb.net/test?retryWrites=true&w=majority`;
     private connOptions: MongoClientOptions = {

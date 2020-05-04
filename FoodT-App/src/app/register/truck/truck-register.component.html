@@ -1,0 +1,67 @@
+<div class="register-bg">
+    <div class="register-card">
+        <div class="register-card-content">
+            <div class="stepper-card">
+                <mat-vertical-stepper [linear]="isLinear" #stepper>
+                    <mat-step [stepControl]="truckData">
+                        <form [formGroup]="truckData">
+                            <ng-template matStepLabel>Dados Pessoais</ng-template>
+                            <mat-form-field>
+                                <mat-label>Nome do Proprietário</mat-label>
+                                <input matInput placeholder="" formControlName="ownerName" required autocomplete="off">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <mat-label>Nome do Caminhão</mat-label>
+                                <input matInput placeholder="" formControlName="truckName" required autocomplete="off">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <mat-label>CPF/CNPJ</mat-label>
+                                <input matInput placeholder="" formControlName="document" required autocomplete="off">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <mat-label>Telefone</mat-label>
+                                <input matInput placeholder="" formControlName="phone" required autocomplete="off">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <mat-label>Tipo Culinário</mat-label>
+                                <input matInput placeholder="" formControlName="type" required autocomplete="off">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <mat-label>E-mail</mat-label>
+                                <input matInput placeholder="" formControlName="email" required autocomplete="off">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <mat-label>Senha</mat-label>
+                                <input type="password" matInput placeholder="" formControlName="password" required
+                                    autocomplete="off">
+                            </mat-form-field>
+                            <div>
+                                <button mat-raised-button color="primary" matStepperNext>Próximo</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step>
+                        <ng-template matStepLabel>Confirmar Dados</ng-template>
+                        <p><strong>Nome do Truck:</strong> {{truckData.get('truckName').value}}</p>
+                        <p><strong>CPF/CNPJ:</strong> {{truckData.get('document').value}}</p>
+                        <p><strong>Telefone:</strong>{{truckData.get('phone').value}}</p>
+                        <p><strong>Tipo Culinário:</strong>{{truckData.get('type').value}}</p>
+                        <p>Tudo certo?</p>
+                        <div>
+                            <button mat-raised-button color="primary" matStepperPrevious>Não,
+                                voltar</button> &nbsp;
+                            <button mat-raised-button color="primary" (click)="register()">Sim,
+                                finalizar</button>
+                        </div>
+                    </mat-step>
+                </mat-vertical-stepper>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 
 const server = express();
@@ -7,6 +8,7 @@ const server = express();
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 
+server.use(cors());
 server.use(require('./src/controllers/index'));
 
 server.get('/', (_, res) => {
