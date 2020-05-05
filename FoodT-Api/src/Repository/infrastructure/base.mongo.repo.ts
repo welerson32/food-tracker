@@ -23,12 +23,13 @@ export class BaseMongoRepo {
         return client?.db(this.dbName);
     }
 
-    async get(id: string) {
+    async login(obj: any) {
         let client: MongoClient;
         try {
+            const cpf = obj.document;
             client = await this.connect();
             const db = client.db(this.dbName);
-            return await db.collection(this.collectionName).findOne({ _id: new ObjectID(id) });
+            return await db.collection(this.collectionName).findOne({ document: cpf });
         } catch (err) {
             throw err;
         } finally {
