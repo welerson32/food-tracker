@@ -59,7 +59,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { RegisterComponent } from './register/person/register.component';
 import { TruckRegisterComponent } from './register/truck/truck-register.component';
-import { AuthModule } from './auth/auth.module';
 
 
 @NgModule({
@@ -75,7 +74,6 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AuthModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
