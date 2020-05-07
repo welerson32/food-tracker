@@ -7,7 +7,6 @@ const service = new LoginService();
 router.post('/person', async (req, res) => {
     try {
         var corpo = req.body;
-        console.log("Dado recebido: ", corpo)
         const result = await service.loginPerson(corpo)
         console.log("Dado que foi pego:", result);
         res.status(200).send(result);
@@ -19,10 +18,9 @@ router.post('/person', async (req, res) => {
 router.post('/truck', async (req, res) => {
     try {
         var corpo = req.body;
-        console.log("Dado recebido: ", corpo)
-        await service.insertTruck(corpo)
-        console.log("Registrado com sucesso");
-        res.status(200).send("Register, OK!")
+        const result = await service.loginTruck(corpo)
+        console.log("Dado que foi pego:", result);
+        res.status(200).send(result)
     } catch (error) {
         res.send(error)
     }

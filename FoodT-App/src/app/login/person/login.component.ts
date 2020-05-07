@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ILogin } from '../../../../../Library/Interfaces/ILogin'
-import { LoginService } from '../services/login.service'
+import { ILogin } from '../../../../../Library/Interfaces/ILogin';
+import { LoginService } from '../services/login.service';
+import { Person } from '../../../../../Library/Entities/Person';
 
 @Component({
   selector: 'app-login',
@@ -9,19 +10,21 @@ import { LoginService } from '../services/login.service'
 })
 export class LoginComponent implements OnInit {
 
-  login: string;
-  password: string;
-  loginObj: ILogin;
 
   constructor(private service: LoginService) { }
+  login: ILogin;
 
   ngOnInit() {
   }
 
-  tryLogin() {
-    this.loginObj.document = this.login;
-    this.loginObj.password = this.password;
-    this.service.loginPerson(this.loginObj);
+  async tryLogin() {
+    console.log(this.login);
+    const person = await this.service.loginPerson(this.login);
+    this.registrySession(person);
+  }
+
+  registrySession(person: any) {
+    console.log(person);
   }
 
 }

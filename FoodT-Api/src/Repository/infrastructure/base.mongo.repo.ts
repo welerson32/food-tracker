@@ -4,7 +4,7 @@ export class BaseMongoRepo {
 
     protected dbName = "food-tracker";
     private collectionName: string;
-    private connUri = `mongodb+srv://teste:wfg24002@cluster0-haqrh.gcp.mongodb.net/test?retryWrites=true&w=majority`;
+    private connUri = `mongodb+srv://master:wfg24002@cluster0-haqrh.gcp.mongodb.net/test?retryWrites=true&w=majority`;
     private connOptions: MongoClientOptions = {
         useNewUrlParser: true,
         useUnifiedTopology: true,

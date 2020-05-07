@@ -16,8 +16,8 @@ export class LoginService {
         return obj;
     }
 
-    async insertTruck(obj: any): Promise<any> {
-        obj = await this.truckRepo.register(obj);
+    async loginTruck(obj: any): Promise<any> {
+        obj = await this.truckRepo.login(obj);
         return obj;
     }
 
