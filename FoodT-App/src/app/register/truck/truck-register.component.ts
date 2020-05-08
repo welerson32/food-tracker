@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterService } from '../services/register.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-truck-register',
@@ -11,10 +12,17 @@ export class TruckRegisterComponent implements OnInit {
   isLinear = true;
   truckData: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private service: RegisterService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private service: RegisterService,
+    private router: Router
+  ) { }
 
 
   ngOnInit() {
+    if (localStorage.getItem('FT_Person_Session')) {
+      this.router.navigate(['home/truck']);
+    }
     this.truckData = this.formBuilder.group({
       ownerName: ['', Validators.required],
       truckName: ['', Validators.required],

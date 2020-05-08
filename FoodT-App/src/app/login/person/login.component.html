@@ -9,18 +9,17 @@
             <form class="form">
                 <mat-form-field class="field" appearance="outline">
                     <mat-label class="label">Login</mat-label>
-                    <input matInput placeholder="" autocomplete="off" [(ngModel)]="login.document"
-                        [ngModelOptions]="{standalone: true}">
+                    <input matInput #documentField name="document" [(ngModel)]="document" placeholder="CPF">
                 </mat-form-field>
                 <br>
                 <mat-form-field class="field" appearance="outline">
                     <mat-label class="label">Senha</mat-label>
-                    <input type="password" matInput placeholder="" autocomplete="off" [(ngModel)]="login.password"
-                        [ngModelOptions]="{standalone: true}">
+                    <input matInput #passwordField name="password" type="password" [(ngModel)]="password"
+                        placeholder="Senha">
                 </mat-form-field>
                 <br>
                 <br>
-                <button mat-raised-button color="primary" (click)="tryLogin()">ENTRAR</button>
+                <button mat-raised-button color="primary" (click)="login()">ENTRAR</button>
             </form>
         </div>
         <div class="footer">

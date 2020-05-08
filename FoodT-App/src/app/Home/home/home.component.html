@@ -21,12 +21,12 @@
             <mat-card class="sideBar-card">
                 <mat-card-header>
                     <div mat-card-avatar class="sideBar-header-image"></div>
-                    <mat-card-title>Nome Usuario</mat-card-title>
-                    <mat-card-subtitle class="sideBar-card-subtitle">Dog Breed</mat-card-subtitle>
+                    <mat-card-title>Bem Vindo!</mat-card-title>
+                    <mat-card-subtitle class="sideBar-card-subtitle">{{person.fullName}}</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
                     <p>
-                        Olá, Usuario!
+                        Olá, {{person.nickName}}
                     </p>
                 </mat-card-content>
                 <mat-card-actions>
@@ -38,7 +38,7 @@
                     &nbsp;
                     &nbsp;
                     &nbsp;
-                    <button mat-button>
+                    <button mat-button (click)="logout()">
                         <mat-icon>logout</mat-icon>
                     </button>
                 </mat-card-actions>

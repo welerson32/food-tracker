@@ -5,15 +5,23 @@ import { HomeComponent } from './Home/home/home.component';
 import { LoginComponent } from './login/person/login.component';
 import { RegisterComponent } from './register/person/register.component';
 import { TruckRegisterComponent } from './register/truck/truck-register.component';
+import { ScreeningComponent } from './login/screening/screening.component';
+import { TruckLoginComponent } from './login/truck/truck-login.component';
+import { TruckHomeComponent } from './Home/truck/truck-home.component';
+import { AuthGuardService } from './login/services/auth-guard.service';
+import { AuthGuardTruckService } from './login/services/auth-guard-truck.service';
 
 
 const routes: Routes = [
 
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: 'screening', pathMatch: 'full' },
+  { path: 'screening', component: ScreeningComponent },
   { path: 'login/person', component: LoginComponent },
+  { path: 'login/truck', component: TruckLoginComponent },
   { path: 'register/person', component: RegisterComponent },
-  { path: 'register/truck', component: TruckRegisterComponent }
+  { path: 'register/truck', component: TruckRegisterComponent },
+  { path: 'home/person', component: HomeComponent, canActivate: [AuthGuardService] },
+  { path: 'home/truck', component: TruckHomeComponent, canActivate: [AuthGuardTruckService] },
 
 ];
 

@@ -2,9 +2,9 @@ import { Db, MongoClient, MongoClientOptions, ObjectID } from 'mongodb';
 
 export class BaseMongoRepo {
 
-    protected dbName = "food-tracker";
+    protected dbName = "FoodTracker";
     private collectionName: string;
-    private connUri = `mongodb+srv://master:wfg24002@cluster0-haqrh.gcp.mongodb.net/test?retryWrites=true&w=majority`;
+    private connUri = `mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false`;
     private connOptions: MongoClientOptions = {
         useNewUrlParser: true,
         useUnifiedTopology: true,

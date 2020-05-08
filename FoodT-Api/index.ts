@@ -13,11 +13,11 @@ server.use(require('./src/controllers/index'));
 
 server.get('/', (_, res) => {
     res.json({
-        message: `API is running on PORT 3000`,
+        message: `FoodTracker API is running on PORT 3000`,
         version: '1.0'
     });
 });
 
 server.listen(8080, () => {
-    console.log({ message: `People Registration API is running at http://localhost:3000`, version: "1.0" });
+    console.log({ message: `Food Tracker API is running at http://localhost:8080`, version: "1.0" });
 });

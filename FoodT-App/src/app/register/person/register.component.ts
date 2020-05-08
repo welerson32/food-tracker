@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterService } from '../services/register.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -17,10 +18,17 @@ export class RegisterComponent implements OnInit {
     N: 'Não Binário'
   };
 
-  constructor(private formBuilder: FormBuilder, private service: RegisterService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private service: RegisterService,
+    private router: Router
+  ) { }
 
 
   ngOnInit() {
+    if (localStorage.getItem('FT_Person_Session')) {
+      this.router.navigate(['home/person']);
+    }
     this.personalData = this.formBuilder.group({
       fullName: ['', Validators.required],
       nickName: ['', Validators.required],
@@ -33,6 +41,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    return this.service.registerPerson(this.personalData.value);
+    this.service.registerPerson(this.personalData.value);
+    this.router.navigate(['login/person']);
   }
 }

@@ -1,0 +1,29 @@
+<div class="login-bg">
+    <div class="login-card">
+        <div class="header">
+            <p id="title">LOGO</p>
+        </div>
+        <div class="body">
+            <p id="title">Bem vindo!</p>
+            <p id="sub-title">Para continuar, acesse sua conta.</p>
+            <form class="form">
+                <mat-form-field class="field" appearance="outline">
+                    <mat-label class="label">Login</mat-label>
+                    <input matInput #documentField name="document" [(ngModel)]="document" placeholder="CPF/CNPJ">
+                </mat-form-field>
+                <br>
+                <mat-form-field class="field" appearance="outline">
+                    <mat-label class="label">Senha</mat-label>
+                    <input matInput #passwordField name="password" type="password" [(ngModel)]="password"
+                        placeholder="Senha">
+                </mat-form-field>
+                <br>
+                <br>
+                <button mat-raised-button color="primary" (click)="login()">ENTRAR</button>
+            </form>
+        </div>
+        <div class="footer">
+            <p id="register">Não tem uma conta? Clique <a routerLink="/register/person">aqui</a> e registre-se.</p>
+        </div>
+    </div>
+</div>
