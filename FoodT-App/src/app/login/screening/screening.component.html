@@ -4,12 +4,10 @@
             <p id="title">LOGO</p>
         </div>
         <div class="body">
-            <p id="title">Bem vindo!</p>
-            <p id="sub-title">Para continuar, acesse sua conta.</p>
-
-        </div>
-        <div class="footer">
-            <p id="register">Não tem uma conta? Clique <a routerLink="/register/person">aqui</a> e registre-se.</p>
+            <p id="title">Bem Vindo!</p>
+            <p id="sub-title">Qual serviço você quer acessar?</p>
+            <button mat-button class="bt" (click)="goToTruck()">Registrar Truck</button>
+            <button mat-button class="bt" (click)="goToPerson()">Procurar Truck</button>
         </div>
     </div>
 </div>

@@ -58,7 +58,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.loginData.document = this.document;
     this.loginData.password = this.password;
     const person = await this.service.loginPerson(this.loginData);
-    this.registrySession(person);
+    if (person) {
+      this.registrySession(person);
+    } else {
+      this.loginEmpty();
+    }
   }
 
   registrySession(person: any) {
@@ -70,6 +74,14 @@ export class LoginComponent implements OnInit, AfterViewInit {
     } else {
       this.loginFailed();
     }
+  }
+
+  loginEmpty() {
+    this.clearFields();
+    setTimeout(() => {
+      this.documentField.nativeElement.focus();
+      this.snackBar.open('Acesso negado! Usuario não encontrado.', 'OK', { duration: 5000 });
+    });
   }
 
   loginFailed() {

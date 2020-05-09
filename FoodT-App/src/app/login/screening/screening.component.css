@@ -6,8 +6,10 @@
 }
 
 .login-card {
+    /* background-image: url('./../../../assets/images/truck-bg.jpg'); */
+    /* background-position: center; */
     background-color: white;
-    width: 500px;
+    width: 450px;
     height: 700px;
     margin: auto;
     border-radius: 20px;
@@ -29,6 +31,13 @@
 
 .login-card .footer {
 
+}
+
+.bt {
+    border-radius: 10px;
+    color: white;
+    padding: 5px;
+    margin: 5px;
 }
 
 .login-card button {

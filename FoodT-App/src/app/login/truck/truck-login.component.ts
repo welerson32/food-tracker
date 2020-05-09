@@ -57,7 +57,11 @@ export class TruckLoginComponent implements OnInit, AfterViewInit {
     this.loginData.document = this.document;
     this.loginData.password = this.password;
     const truck = await this.service.loginTruck(this.loginData);
-    this.registrySession(truck);
+    if (truck) {
+      this.registrySession(truck);
+    } else {
+      this.loginEmpty();
+    }
   }
 
   registrySession(truck: any) {
@@ -69,6 +73,14 @@ export class TruckLoginComponent implements OnInit, AfterViewInit {
     } else {
       this.loginFailed();
     }
+  }
+
+  loginEmpty() {
+    this.clearFields();
+    setTimeout(() => {
+      this.documentField.nativeElement.focus();
+      this.snackBar.open('Acesso negado! Usuario não encontrado.', 'OK', { duration: 5000 });
+    });
   }
 
   loginFailed() {
