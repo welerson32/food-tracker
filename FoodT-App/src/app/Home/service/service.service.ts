@@ -21,9 +21,16 @@ export class HomeService {
 
   }
 
-  logout(confirm: boolean) {
+  logoutPerson(confirm: boolean) {
     if (confirm) {
       localStorage.removeItem('FT_Person_Session');
+      window.location.reload();
+    }
+  }
+
+  logoutTruck(confirm: boolean) {
+    if (confirm) {
+      localStorage.removeItem('FT_Truck_Session');
       window.location.reload();
     }
   }

@@ -7,7 +7,7 @@ declare let google: any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./../../app.component.css']
+  styleUrls: ['./home.component.css']
 })
 
 export class HomeComponent implements OnInit {
@@ -18,47 +18,16 @@ export class HomeComponent implements OnInit {
   lat = -19.918622875284022;
   lng = -43.93859346530122;
 
-  map: any;
-  marker: any;
-
   async ngOnInit() {
     await this.Service.GetGeoLocation().then(pos => {
       this.lat = pos.lat;
       this.lng = pos.lng;
     });
-    this.initMap();
     this.person = JSON.parse(localStorage.getItem('FT_Person_Session'));
   }
 
-  markOnClick(event) {
-    console.log(event);
-    this.lat = event.coords.lat;
-    this.lng = event.coords.lng;
-    this.marker = new google.maps.Marker({ position: location, map: this.map });
-    return this.initMap();
-  }
-
-  initMap() {
-    const location = { lat: this.lat, lng: this.lng };
-
-    this.map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 17,
-      center: location,
-      disableDefaultUI: true,
-    });
-
-    this.marker = new google.maps.Marker({ position: location, map: this.map });
-
-
-  }
-
-  placeMarkerAndPanTo(latLng, map) {
-    this.marker.setPosition(latLng);
-    map.panTo(latLng);
-  }
-
   logout() {
-    this.Service.logout(confirm('Deslogar?'));
+    this.Service.logoutPerson(confirm('Deslogar?'));
   }
 
 }
