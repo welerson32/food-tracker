@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     if (localStorage.getItem('FT_Person_Session')) {
-      this.router.navigate(['home/person']);
+      this.router.navigate(['person/home']);
     }
   }
 
@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       localStorage.setItem('FT_Person_Session', JSON.stringify(person));
       this.clearFields();
       this.snackBar.open(`Logado com Sucesso, bem vindo ${person.fullName}`, 'OK', { duration: 5000 });
-      this.router.navigate(['home/person']);
+      this.router.navigate(['person/home']);
     } else {
       this.loginFailed();
     }

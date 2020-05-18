@@ -7,6 +7,7 @@
             </button>
         </div>
     </div>
+
     <mat-drawer #drawer class="sideBar-sidenav" mode="over">
         <div class="divCard">
             <mat-card class="sideBar-card">
@@ -35,6 +36,7 @@
                 </mat-card-actions>
             </mat-card>
         </div>
+
         <div class="side-menu">
             <br>
             <button type="button" type="button" mat-button (click)="goToMenu()">
@@ -52,6 +54,52 @@
                 <span>Horario de Funcionamento</span>
             </button>
         </div>
+
     </mat-drawer>
+    <div class="location-content">
+        <div class="adress-form">
+            <p class="title">Onde você estara hoje?</p>
+
+            <form [formGroup]="adressForm">
+                <mat-form-field>
+                    <mat-label>Rua</mat-label>
+                    <input matInput placeholder="" formControlName="street" required autocomplete="off">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Number</mat-label>
+                    <input matInput placeholder="" formControlName="number" required autocomplete="off">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Bairro</mat-label>
+                    <input matInput placeholder="" formControlName="neighborhood" required autocomplete="off">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Cidade</mat-label>
+                    <input matInput placeholder="" formControlName="city" required autocomplete="off">
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button (click)="search()">Procurar</button>
+                </div>
+            </form>
+
+        </div>
+        <div class="current-adress">
+            <div *ngIf="truck.location; else noAdress">
+                <p>Rua</p>
+                <span>{{truck.location.street}}</span>
+                <p>Number:</p>
+                <span>{{truck.location.number}}</span>
+                <p>Bairro:</p>
+                <span>{{truck.location.neighborhood}}</span>
+                <p>Cidade:</p>
+                <span>{{truck.location.city}}</span>
+                <p>Estado:</p>
+                <span>{{truck.location.uf}}</span>
+            </div>
+            <ng-template class="current-adress" #noAdress>Nenhum endereço registrado</ng-template>
+        </div>
+    </div>
 
 </mat-drawer-container>

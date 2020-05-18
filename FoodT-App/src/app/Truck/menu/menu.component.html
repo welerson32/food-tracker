@@ -7,6 +7,7 @@
             </button>
         </div>
     </div>
+
     <mat-drawer #drawer class="sideBar-sidenav" mode="over">
         <div class="divCard">
             <mat-card class="sideBar-card">
@@ -35,6 +36,7 @@
                 </mat-card-actions>
             </mat-card>
         </div>
+
         <div class="side-menu">
             <br>
             <button type="button" type="button" mat-button (click)="goToMenu()">
@@ -52,6 +54,41 @@
                 <span>Horario de Funcionamento</span>
             </button>
         </div>
+
     </mat-drawer>
 
+    <div class="food-content">
+        <div class="food-form">
+            <p class="title">Adicione um novo prato</p>
+            <form [formGroup]="foodForm">
+                <mat-form-field>
+                    <mat-label>Nome do Prato</mat-label>
+                    <input matInput placeholder="" formControlName="foodName" required autocomplete="off">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Descrição</mat-label>
+                    <input matInput placeholder="" formControlName="description" required autocomplete="off">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Preço</mat-label>
+                    <input type="number" matInput placeholder="" formControlName="price" required autocomplete="off">
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button (click)="registry()">Salvar</button>
+                </div>
+            </form>
+        </div>
+        <div class="registred-foods">
+            <div *ngIf="truck.menu; else noFood">
+                <p *ngFor="let food of truck.menu">
+                    <span>Nome: {{food.foodName}}</span>
+                    <span>Descrição: {{food.description}}</span>
+                    <span>Preço: {{food.price}}</span>
+                </p>
+            </div>
+            <ng-template class="current-adress" #noFood>Nenhum endereço registrado</ng-template>
+        </div>
+    </div>
 </mat-drawer-container>

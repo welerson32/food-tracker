@@ -19,7 +19,7 @@ export class TruckRepo extends BaseMongoRepo {
     }
 
     async update(obj: any) {
-        obj = await super.update(obj);
+        obj = await super.update(obj, false);
         return obj;
     }
 

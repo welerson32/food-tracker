@@ -1,5 +1,5 @@
 export class TruckMenu {
-    foodName: string;
-    description: string;
-    price: number;
+    foodName: string = '';
+    description: string = '';
+    price: number = 0;
 }

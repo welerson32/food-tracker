@@ -27,7 +27,7 @@ export class TruckLoginComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     if (localStorage.getItem('FT_Truck_Session')) {
-      this.router.navigate(['home/truck']);
+      this.router.navigate(['truck/home']);
     }
   }
 
@@ -69,7 +69,7 @@ export class TruckLoginComponent implements OnInit, AfterViewInit {
       localStorage.setItem('FT_Truck_Session', JSON.stringify(truck));
       this.clearFields();
       this.snackBar.open(`Logado com Sucesso, bem vindo ${truck.ownerName}`, 'OK', { duration: 5000 });
-      this.router.navigate(['home/truck']);
+      this.router.navigate(['truck/home']);
     } else {
       this.loginFailed();
     }

@@ -6,7 +6,7 @@ const service = new LoginService();
 
 router.post('/person', async (req, res) => {
     try {
-        var corpo = req.body;
+        const corpo = req.body;
         const result = await service.loginPerson(corpo)
         res.status(200).send(result);
     } catch (error) {
@@ -16,7 +16,7 @@ router.post('/person', async (req, res) => {
 
 router.post('/truck', async (req, res) => {
     try {
-        var corpo = req.body;
+        const corpo = req.body;
         const result = await service.loginTruck(corpo)
         res.status(200).send(result)
     } catch (error) {

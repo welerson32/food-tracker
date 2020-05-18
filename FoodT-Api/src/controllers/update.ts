@@ -1,15 +1,14 @@
 import express from 'express';
-import { RegisterService } from '../services/register.service'
+import { UpdateService } from '../services/update.service';
 
 const router = express.Router();
-const service = new RegisterService();
+const service = new UpdateService();
 
 router.post('/person', async (req, res) => {
     try {
         const corpo = req.body;
-        await service.insertPerson(corpo);
-        console.log("Registrado com sucesso");
-        res.status(200).send("Register, OK!");
+        const result = await service.updatePerson(corpo)
+        res.status(200).send(result);
     } catch (error) {
         res.send(error)
     }
@@ -18,9 +17,8 @@ router.post('/person', async (req, res) => {
 router.post('/truck', async (req, res) => {
     try {
         const corpo = req.body;
-        await service.insertTruck(corpo);
-        console.log("Registrado com sucesso");
-        res.status(200).send("Register, OK!");
+        const result = await service.updateTruck(corpo)
+        res.status(200).send(result)
     } catch (error) {
         res.send(error)
     }

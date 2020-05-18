@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     if (localStorage.getItem('FT_Person_Session')) {
-      this.router.navigate(['home/person']);
+      this.router.navigate(['person/home']);
     }
     this.personalData = this.formBuilder.group({
       fullName: ['', Validators.required],

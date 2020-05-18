@@ -21,7 +21,7 @@ export class TruckRegisterComponent implements OnInit {
 
   ngOnInit() {
     if (localStorage.getItem('FT_Person_Session')) {
-      this.router.navigate(['home/truck']);
+      this.router.navigate(['truck/home']);
     }
     this.truckData = this.formBuilder.group({
       ownerName: ['', Validators.required],

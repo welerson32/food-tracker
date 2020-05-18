@@ -3,7 +3,7 @@ import { TruckRepo } from '../Repository/truck.repository';
 import { Person } from '../../../Library/Entities/Person';
 import { Truck } from '../../../Library/Entities/Truck';
 
-export class LoginService {
+export class UpdateService {
 
     private personRepo: PersonRepo;
     private truckRepo: TruckRepo;
@@ -13,13 +13,13 @@ export class LoginService {
         this.truckRepo = new TruckRepo();
     }
 
-    async loginPerson(obj: any): Promise<Person> {
-        obj = await this.personRepo.login(obj);
+    async updatePerson(obj: any): Promise<Person> {
+        obj = await this.personRepo.update(obj);
         return obj;
     }
 
-    async loginTruck(obj: any): Promise<Truck> {
-        obj = await this.truckRepo.login(obj);
+    async updateTruck(obj: any): Promise<Truck> {
+        obj = await this.truckRepo.update(obj);
         return obj;
     }
 

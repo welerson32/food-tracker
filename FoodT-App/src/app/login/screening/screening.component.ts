@@ -14,11 +14,11 @@ export class ScreeningComponent implements OnInit {
   }
 
   goToTruck() {
-    this.router.navigate(['home/truck']);
+    this.router.navigate(['truck/home']);
   }
 
   goToPerson() {
-    this.router.navigate(['home/person']);
+    this.router.navigate(['person/home']);
   }
 
 }

@@ -12,7 +12,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './Home/home/home.component';
 import { LoginComponent } from './login/person/login.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { MapComponent } from './Home/map/map.component';
 
 // MaterialModules
@@ -62,6 +61,9 @@ import { TruckRegisterComponent } from './register/truck/truck-register.componen
 import { ScreeningComponent } from './login/screening/screening.component';
 import { TruckLoginComponent } from './login/truck/truck-login.component';
 import { TruckHomeComponent } from './Home/truck/truck-home.component';
+import { MenuComponent } from './Truck/menu/menu.component';
+import { SchedulesComponent } from './Truck/schedules/schedules.component';
+import { LocationComponent } from './Truck/location/location.component';
 
 
 @NgModule({
@@ -69,13 +71,15 @@ import { TruckHomeComponent } from './Home/truck/truck-home.component';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    SidebarComponent,
     MapComponent,
     RegisterComponent,
     TruckRegisterComponent,
     ScreeningComponent,
     TruckLoginComponent,
-    TruckHomeComponent
+    TruckHomeComponent,
+    MenuComponent,
+    SchedulesComponent,
+    LocationComponent
   ],
   imports: [
     BrowserModule,

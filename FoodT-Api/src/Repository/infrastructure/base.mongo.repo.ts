@@ -69,7 +69,7 @@ export class BaseMongoRepo {
         }
     }
 
-    async update(obj: any, upsert: boolean = true) {
+    async update(obj: any, upsert: boolean = true): Promise<void> {
         let client: MongoClient;
         try {
             const id = obj._id;
