@@ -7,12 +7,13 @@ import { RegisterComponent } from './register/person/register.component';
 import { TruckRegisterComponent } from './register/truck/truck-register.component';
 import { ScreeningComponent } from './login/screening/screening.component';
 import { TruckLoginComponent } from './login/truck/truck-login.component';
-import { TruckHomeComponent } from './Home/truck/truck-home.component';
+import { TruckHomeComponent } from './Truck/home/truck-home.component';
 import { AuthGuardService } from './login/services/auth-guard.service';
 import { AuthGuardTruckService } from './login/services/auth-guard-truck.service';
 import { LocationComponent } from './Truck/location/location.component';
 import { MenuComponent } from './Truck/menu/menu.component';
 import { SchedulesComponent } from './Truck/schedules/schedules.component';
+import { RatingComponent } from './Truck/rating/rating.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'truck/home', component: TruckHomeComponent, canActivate: [AuthGuardTruckService] },
   { path: 'truck/location', component: LocationComponent, canActivate: [AuthGuardTruckService] },
   { path: 'truck/menu', component: MenuComponent, canActivate: [AuthGuardTruckService] },
-  { path: 'truck/schedules', component: SchedulesComponent, canActivate: [AuthGuardTruckService] }
+  { path: 'truck/schedules', component: SchedulesComponent, canActivate: [AuthGuardTruckService] },
+  { path: 'truck/rating', component: RatingComponent, canActivate: [AuthGuardTruckService] }
 
 ];
 

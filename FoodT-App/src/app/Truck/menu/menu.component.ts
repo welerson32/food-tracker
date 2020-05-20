@@ -84,6 +84,10 @@ export class MenuComponent implements OnInit {
     }
   }
 
+  goToRating() {
+    this.router.navigate(['truck/rating']);
+  }
+
   logout() {
     this.homeService.logoutTruck(confirm('Deslogar?'));
   }

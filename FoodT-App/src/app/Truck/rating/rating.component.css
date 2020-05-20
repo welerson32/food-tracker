@@ -1,0 +1,133 @@
+    :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+    margin: 8px 0;
+    }
+
+    p {
+    margin: 0;
+    }
+
+    .sideBar-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    
+    .sideBar-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    }
+    
+    .sideBar-sidenav {
+    padding: 20px;
+    }
+    
+    .sideBar-card {
+        max-width: 200px;
+        background-color: #555555;
+        border-radius: 10px;
+        color: white;
+    }
+
+    .sideBar-card-subtitle {
+        color: white;
+    }
+    
+    .sideBar-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+    }
+
+    .food-form {
+        width: 60%;
+        height: 100%;
+        position: absolute;
+        left: 0px;
+    }
+
+    .registred-food {
+        width: 40%;
+        height: 100%;
+        position: absolute;
+        right: 0px;
+    }
+
+    .title { 
+        font-size: 50pt;
+        color: #555555;
+    }
+
+    .menu-button {
+        background-color: #555555;
+        border-radius: 10px;
+        margin-left: 10px;
+        margin-right: 20px;
+    }
+
+    .toolbar {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #555555;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    z-index: +2;
+    }
+
+    .content {
+    display: flex;
+    margin: 32px auto;
+    padding: 0 16px;
+    max-width: 960px;
+    flex-direction: column;
+    align-items: center;
+    }
+
+
+
+
+    /* Responsive Styles */
+    @media screen and (max-width: 767px) {
+
+    .card-container > *:not(.circle-link) ,
+    .terminal {
+        width: 100%;
+    }
+
+    .card:not(.highlight-card) {
+        height: 16px;
+        margin: 8px 0;
+    }
+
+    .card.highlight-card span {
+        margin-left: 72px;
+    }
+
+    svg#rocket-smoke {
+        right: 120px;
+        transform: rotate(-5deg);
+    }
+    }
+
+    @media screen and (max-width: 575px) {
+    svg#rocket-smoke {
+        display: none;
+        visibility: hidden;
+    }
+    }

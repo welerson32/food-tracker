@@ -60,10 +60,11 @@ import { RegisterComponent } from './register/person/register.component';
 import { TruckRegisterComponent } from './register/truck/truck-register.component';
 import { ScreeningComponent } from './login/screening/screening.component';
 import { TruckLoginComponent } from './login/truck/truck-login.component';
-import { TruckHomeComponent } from './Home/truck/truck-home.component';
+import { TruckHomeComponent } from './Truck/home/truck-home.component';
 import { MenuComponent } from './Truck/menu/menu.component';
 import { SchedulesComponent } from './Truck/schedules/schedules.component';
 import { LocationComponent } from './Truck/location/location.component';
+import { RatingComponent } from './Truck/rating/rating.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { LocationComponent } from './Truck/location/location.component';
     TruckHomeComponent,
     MenuComponent,
     SchedulesComponent,
-    LocationComponent
+    LocationComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,

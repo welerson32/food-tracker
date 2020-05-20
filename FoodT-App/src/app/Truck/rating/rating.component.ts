@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService } from './../service/service.service';
+import { HomeService } from '../../Home/service/service.service';
 import { LoginService } from '../../login/services/login.service';
 import { Truck } from './../../../../../Library/Entities/Truck';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-truck-home',
-  templateUrl: './truck-home.component.html',
-  styleUrls: ['./truck-home.component.css']
+  selector: 'app-rating',
+  templateUrl: './rating.component.html',
+  styleUrls: ['./rating.component.css']
 })
-export class TruckHomeComponent implements OnInit {
+export class RatingComponent implements OnInit {
   truck: Truck;
 
   lat = -19.918622875284022;
@@ -45,6 +45,10 @@ export class TruckHomeComponent implements OnInit {
 
   goToSchedules() {
     this.router.navigate(['truck/schedules']);
+  }
+
+  goToRating() {
+    this.router.navigate(['truck/rating']);
   }
 
   logout() {

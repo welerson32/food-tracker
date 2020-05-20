@@ -1,5 +1,6 @@
 import { Component, OnInit, } from '@angular/core';
 import { HomeService } from './../service/service.service';
+import { Truck } from '../../../../../Library/Entities/Truck';
 
 declare let google: any;
 
@@ -9,29 +10,22 @@ declare let google: any;
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-
-  constructor(private Service: HomeService) { }
-
+  trucks: Truck[] = [];
   lat = -19.918622875284022;
   lng = -43.93859346530122;
 
   map: any;
   marker: any;
 
+  constructor(private service: HomeService) { }
+
   async ngOnInit() {
-    await this.Service.GetGeoLocation().then(pos => {
+    await this.service.GetGeoLocation().then(pos => {
       this.lat = pos.lat;
       this.lng = pos.lng;
     });
+    this.trucks = await this.service.getTruckLocations();
     this.initMap();
-  }
-
-  markOnClick(event) {
-    console.log(event);
-    this.lat = event.coords.lat;
-    this.lng = event.coords.lng;
-    this.marker = new google.maps.Marker({ position: location, map: this.map });
-    return this.initMap();
   }
 
   initMap() {
@@ -43,13 +37,17 @@ export class MapComponent implements OnInit {
       disableDefaultUI: true,
     });
 
-    this.marker = new google.maps.Marker({ position: location, map: this.map });
-
-  }
-
-  placeMarkerAndPanTo(latLng, map) {
-    this.marker.setPosition(latLng);
-    map.panTo(latLng);
+    for (const truck of this.trucks) {
+      const infowindow = new google.maps.InfoWindow({
+        content: `Janela de teste do truck ${truck.truckName}`
+      });
+      location.lat = truck.location.lat;
+      location.lng = truck.location.lng;
+      this.marker = new google.maps.Marker({ position: location, map: this.map });
+      this.marker.addListener('click', () => {
+        infowindow.open(this.map, this.marker);
+      });
+    }
   }
 
 }

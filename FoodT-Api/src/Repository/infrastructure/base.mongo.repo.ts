@@ -39,6 +39,21 @@ export class BaseMongoRepo {
         }
     }
 
+    async getAllTrucks() {
+        let client: MongoClient;
+        try {
+            client = await this.connect();
+            const db = client.db(this.dbName);
+            return await db.collection(this.collectionName).find({ 'location.city': 'Belo Horizonte' }).toArray()
+        } catch (err) {
+            throw err;
+        } finally {
+            if (client) {
+                client.close();
+            }
+        }
+    }
+
     async insertOne(obj: any) {
         let client: MongoClient;
         try {

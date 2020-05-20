@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../../Home/service/service.service';
 import { LoginService } from '../../login/services/login.service';
-import { Truck } from './../../../../../Library/Entities/Truck';
+import { Truck } from '../../../../../Library/Entities/Truck';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-schedules',
-  templateUrl: './schedules.component.html',
-  styleUrls: ['./schedules.component.css']
+  selector: 'app-truck-home',
+  templateUrl: './truck-home.component.html',
+  styleUrls: ['./truck-home.component.css']
 })
-export class SchedulesComponent implements OnInit {
+export class TruckHomeComponent implements OnInit {
   truck: Truck;
 
   lat = -19.918622875284022;

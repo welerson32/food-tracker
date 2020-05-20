@@ -103,6 +103,10 @@ export class LocationComponent implements OnInit {
     this.router.navigate(['truck/schedules']);
   }
 
+  goToRating() {
+    this.router.navigate(['truck/rating']);
+  }
+
   logout() {
     this.homeService.logoutTruck(confirm('Deslogar?'));
   }
