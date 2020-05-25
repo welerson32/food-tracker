@@ -44,7 +44,7 @@ export class BaseMongoRepo {
         try {
             client = await this.connect();
             const db = client.db(this.dbName);
-            return await db.collection(this.collectionName).find({ 'location.city': 'Belo Horizonte' }).toArray()
+            return await db.collection(this.collectionName).find({ 'location.city': 'Belo Horizonte', 'open': true }).toArray()
         } catch (err) {
             throw err;
         } finally {

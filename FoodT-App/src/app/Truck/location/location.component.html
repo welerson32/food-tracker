@@ -21,15 +21,10 @@
                         Olá, {{truck.ownerName}}
                     </p>
                 </mat-card-content>
+                <mat-slide-toggle (change)="toggleOnChange($event)" [(ngModel)]="isOpen">
+                    Fechado/Aberto
+                </mat-slide-toggle>
                 <mat-card-actions>
-                    <button mat-button>
-                        <mat-icon>settings</mat-icon>
-                    </button>
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
                     <button mat-button (click)="logout()">
                         <mat-icon>logout</mat-icon>
                     </button>
@@ -47,11 +42,6 @@
             <button type="button" mat-button (click)="goToLocation()">
                 <mat-icon>room</mat-icon> &nbsp;
                 <span>Localização Atual</span>
-            </button>
-            <mat-divider></mat-divider>
-            <button type="button" mat-button (click)="goToSchedules()">
-                <mat-icon>schedule</mat-icon> &nbsp;
-                <span>Horario de Funcionamento</span>
             </button>
             <mat-divider></mat-divider>
             <button type="button" mat-button (click)="goToRating()">

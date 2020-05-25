@@ -20,7 +20,7 @@ export class TruckRegisterComponent implements OnInit {
 
 
   ngOnInit() {
-    if (localStorage.getItem('FT_Person_Session')) {
+    if (localStorage.getItem('FT_Truck_Session')) {
       this.router.navigate(['truck/home']);
     }
     this.truckData = this.formBuilder.group({
@@ -35,7 +35,8 @@ export class TruckRegisterComponent implements OnInit {
   }
 
   register() {
-    return this.service.registerTruck(this.truckData.value);
+    this.service.registerTruck(this.truckData.value);
+    this.router.navigate(['login/truck']);
   }
 
 }

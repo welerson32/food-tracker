@@ -21,15 +21,10 @@
                         Olá, {{truck.ownerName}}
                     </p>
                 </mat-card-content>
+                <mat-slide-toggle (change)="toggleOnChange($event)" [(ngModel)]="isOpen">
+                    Fechado/Aberto
+                </mat-slide-toggle>
                 <mat-card-actions>
-                    <button mat-button>
-                        <mat-icon>settings</mat-icon>
-                    </button>
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
                     <button mat-button (click)="logout()">
                         <mat-icon>logout</mat-icon>
                     </button>
@@ -49,11 +44,6 @@
                 <span>Localização Atual</span>
             </button>
             <mat-divider></mat-divider>
-            <button type="button" mat-button (click)="goToSchedules()">
-                <mat-icon>schedule</mat-icon> &nbsp;
-                <span>Horario de Funcionamento</span>
-            </button>
-            <mat-divider></mat-divider>
             <button type="button" mat-button (click)="goToRating()">
                 <mat-icon>star</mat-icon> &nbsp;
                 <span>Nota do Truck</span>
@@ -68,17 +58,20 @@
             <form [formGroup]="foodForm">
                 <mat-form-field>
                     <mat-label>Nome do Prato</mat-label>
-                    <input matInput placeholder="" formControlName="foodName" required autocomplete="off">
+                    <input matInput placeholder="" #documentField name="nameField" formControlName="foodName" required
+                        autocomplete="off">
                 </mat-form-field>
                 <br>
                 <mat-form-field>
                     <mat-label>Descrição</mat-label>
-                    <input matInput placeholder="" formControlName="description" required autocomplete="off">
+                    <input matInput placeholder="" #documentField name="descriptionField" formControlName="description"
+                        required autocomplete="off">
                 </mat-form-field>
                 <br>
                 <mat-form-field>
                     <mat-label>Preço</mat-label>
-                    <input type="number" matInput placeholder="" formControlName="price" required autocomplete="off">
+                    <input type="number" matInput placeholder="" #documentField name="priceField"
+                        formControlName="price" required autocomplete="off">
                 </mat-form-field>
                 <div>
                     <button mat-raised-button (click)="registry()">Salvar</button>

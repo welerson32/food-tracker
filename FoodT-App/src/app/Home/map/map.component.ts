@@ -1,6 +1,17 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HomeService } from './../service/service.service';
 import { Truck } from '../../../../../Library/Entities/Truck';
+import { TruckMenu } from '../../../../../Library/Entities/TruckMenu';
+import { Rating } from '../../../../../Library/Entities/Rating';
+
+export interface DialogData {
+  truckName: string;
+  type: string;
+  menu: TruckMenu[];
+  location: Location;
+  rating: number;
+}
 
 declare let google: any;
 
@@ -17,7 +28,8 @@ export class MapComponent implements OnInit {
   map: any;
   marker: any;
 
-  constructor(private service: HomeService) { }
+  constructor(private service: HomeService, public dialog: MatDialog) { }
+
 
   async ngOnInit() {
     await this.service.GetGeoLocation().then(pos => {
@@ -38,16 +50,34 @@ export class MapComponent implements OnInit {
     });
 
     for (const truck of this.trucks) {
-      const infowindow = new google.maps.InfoWindow({
-        content: `Janela de teste do truck ${truck.truckName}`
-      });
       location.lat = truck.location.lat;
       location.lng = truck.location.lng;
       this.marker = new google.maps.Marker({ position: location, map: this.map });
       this.marker.addListener('click', () => {
-        infowindow.open(this.map, this.marker);
+        const dialogRef = this.dialog.open(TruckDialogComponent, {
+          height: '80%',
+          width: '80%',
+          data: { truckName: truck.truckName, menu: truck.menu, location: truck, type: truck.type },
+        });
       });
     }
+  }
+
+}
+
+@Component({
+  selector: 'app-truck-dialog',
+  templateUrl: 'truck.dialog.html',
+  styleUrls: ['./truck.dialog.css']
+})
+export class TruckDialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<TruckDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+
+  close(): void {
+    this.dialogRef.close();
   }
 
 }

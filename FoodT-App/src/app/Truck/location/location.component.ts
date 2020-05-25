@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatSlideToggleChange } from '@angular/material';
 import { HomeService } from '../../Home/service/service.service';
+import { TruckService } from '../../Truck/services/truck.service';
 import { LoginService } from '../../login/services/login.service';
 import { LocationService } from '../services/location.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -14,28 +15,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./location.component.css']
 })
 export class LocationComponent implements OnInit {
-  truck: Truck;
+  truck: Truck = new Truck();
+  isOpen: boolean;
   adressForm: FormGroup;
-  location: Location;
-  searchResult: any;
+  location: Location = new Location();
+  searchResult: any = new Object();
 
   lat = -19.918622875284022;
   lng = -43.93859346530122;
 
   constructor(
     private homeService: HomeService,
+    private truckService: TruckService,
     private loginService: LoginService,
     private locationService: LocationService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private formBuilder: FormBuilder) {
-    this.truck = new Truck();
-    this.location = new Location();
-    this.searchResult = new Object();
-  }
+    private formBuilder: FormBuilder) { this.updateSession(); }
 
   async ngOnInit() {
-    this.updateSession();
     this.adressForm = this.formBuilder.group({
       street: ['', Validators.required],
       number: ['', Validators.required],
@@ -47,12 +45,19 @@ export class LocationComponent implements OnInit {
       this.lng = pos.lng;
     });
     this.truck = JSON.parse(localStorage.getItem('FT_Truck_Session'));
+    this.isOpen = this.truck.open;
   }
 
   async updateSession() {
     this.truck = JSON.parse(localStorage.getItem('FT_Truck_Session'));
     const truck = await this.loginService.loginTruck(this.truck);
     localStorage.setItem('FT_Truck_Session', JSON.stringify(truck));
+  }
+
+  async toggleOnChange(value: MatSlideToggleChange) {
+    this.truck.open = this.isOpen;
+    await this.truckService.updateTruck(this.truck);
+    window.location.reload();
   }
 
   async search() {
@@ -97,10 +102,6 @@ export class LocationComponent implements OnInit {
 
   goToLocation() {
     this.router.navigate(['truck/location']);
-  }
-
-  goToSchedules() {
-    this.router.navigate(['truck/schedules']);
   }
 
   goToRating() {

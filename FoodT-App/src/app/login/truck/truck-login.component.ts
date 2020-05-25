@@ -79,7 +79,7 @@ export class TruckLoginComponent implements OnInit, AfterViewInit {
     this.clearFields();
     setTimeout(() => {
       this.documentField.nativeElement.focus();
-      this.snackBar.open('Acesso negado! Usuario não encontrado.', 'OK', { duration: 5000 });
+      this.snackBar.open('Acesso negado! Usuario ou Senha invalido.', 'OK', { duration: 5000 });
     });
   }
 
@@ -87,7 +87,7 @@ export class TruckLoginComponent implements OnInit, AfterViewInit {
     this.password = '';
     setTimeout(() => {
       this.passwordField.nativeElement.focus();
-      this.snackBar.open('Acesso negado! Senha incorreta.', 'OK', { duration: 5000 });
+      this.snackBar.open('Acesso negado! Usuario ou Senha invalido.', 'OK', { duration: 5000 });
     });
   }
 

@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './Home/home/home.component';
 import { LoginComponent } from './login/person/login.component';
-import { MapComponent } from './Home/map/map.component';
+import { MapComponent, TruckDialogComponent } from './Home/map/map.component';
 
 // MaterialModules
 import { A11yModule } from '@angular/cdk/a11y';
@@ -62,7 +62,6 @@ import { ScreeningComponent } from './login/screening/screening.component';
 import { TruckLoginComponent } from './login/truck/truck-login.component';
 import { TruckHomeComponent } from './Truck/home/truck-home.component';
 import { MenuComponent } from './Truck/menu/menu.component';
-import { SchedulesComponent } from './Truck/schedules/schedules.component';
 import { LocationComponent } from './Truck/location/location.component';
 import { RatingComponent } from './Truck/rating/rating.component';
 
@@ -78,8 +77,8 @@ import { RatingComponent } from './Truck/rating/rating.component';
     ScreeningComponent,
     TruckLoginComponent,
     TruckHomeComponent,
+    TruckDialogComponent,
     MenuComponent,
-    SchedulesComponent,
     LocationComponent,
     RatingComponent
   ],
@@ -138,6 +137,7 @@ import { RatingComponent } from './Truck/rating/rating.component';
     ScrollingModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [TruckDialogComponent]
 })
 export class AppModule { }

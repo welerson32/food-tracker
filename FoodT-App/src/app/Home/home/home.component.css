@@ -57,6 +57,10 @@
         z-index: +2;
     }
 
+    .logout-bt {
+        margin: auto;
+    }
+
     .sideBar-card {
         max-width: 200px;
         background-color: #555555;
