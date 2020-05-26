@@ -4,13 +4,15 @@ import { HomeService } from './../service/service.service';
 import { Truck } from '../../../../../Library/Entities/Truck';
 import { TruckMenu } from '../../../../../Library/Entities/TruckMenu';
 import { Rating } from '../../../../../Library/Entities/Rating';
+import { Person } from '../../../../../Library/Entities/Person';
+import { TruckService } from 'src/app/Truck/services/truck.service';
 
 export interface DialogData {
   truckName: string;
   type: string;
   menu: TruckMenu[];
   location: Location;
-  rating: number;
+  rating: Rating;
 }
 
 declare let google: any;
@@ -21,6 +23,8 @@ declare let google: any;
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
+  person: Person = new Person();
+  rating: Rating = new Rating();
   trucks: Truck[] = [];
   lat = -19.918622875284022;
   lng = -43.93859346530122;
@@ -28,7 +32,7 @@ export class MapComponent implements OnInit {
   map: any;
   marker: any;
 
-  constructor(private service: HomeService, public dialog: MatDialog) { }
+  constructor(private service: HomeService, public dialog: MatDialog, private truckService: TruckService) { }
 
 
   async ngOnInit() {
@@ -36,6 +40,7 @@ export class MapComponent implements OnInit {
       this.lat = pos.lat;
       this.lng = pos.lng;
     });
+    this.person = JSON.parse(localStorage.getItem('FT_Person_Session'));
     this.trucks = await this.service.getTruckLocations();
     this.initMap();
   }
@@ -50,14 +55,35 @@ export class MapComponent implements OnInit {
     });
 
     for (const truck of this.trucks) {
+      if (!truck.rating) {
+        truck.rating = [];
+      }
+
       location.lat = truck.location.lat;
       location.lng = truck.location.lng;
       this.marker = new google.maps.Marker({ position: location, map: this.map });
+
       this.marker.addListener('click', () => {
+        const rate = truck.rating.find(rating => rating.personId === this.person._id);
+        if (rate) {
+          this.rating = rate;
+        } else {
+          this.rating = new Rating();
+          this.rating.rate = 0;
+        }
         const dialogRef = this.dialog.open(TruckDialogComponent, {
           height: '80%',
           width: '80%',
-          data: { truckName: truck.truckName, menu: truck.menu, location: truck, type: truck.type },
+          data: { truckName: truck.truckName, menu: truck.menu, location: truck, type: truck.type, rating: this.rating },
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            this.rating = result;
+            this.rating.personId = this.person._id;
+            truck.rating.push(this.rating);
+            this.truckService.updateTruck(truck);
+          }
         });
       });
     }
@@ -78,6 +104,26 @@ export class TruckDialogComponent {
 
   close(): void {
     this.dialogRef.close();
+  }
+
+  star1() {
+    this.data.rating.rate = 1;
+  }
+
+  star2() {
+    this.data.rating.rate = 2;
+  }
+
+  star3() {
+    this.data.rating.rate = 3;
+  }
+
+  star4() {
+    this.data.rating.rate = 4;
+  }
+
+  star5() {
+    this.data.rating.rate = 5;
   }
 
 }

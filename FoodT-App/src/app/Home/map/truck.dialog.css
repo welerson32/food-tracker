@@ -1,11 +1,34 @@
+    .dialog-card{
+        margin: auto;
+        width: 95%;
+        height: 95%;
+    }
+
     .dialog-card-header {
+        width: 100%;
+        height: 20%;
+    }
+
+    .btn-close {
+        right: 0px;
+        background-color: #555555;
     }
 
     .dialog-card-subtitle {
-        color: white;
+        color: #555555;
     }
     
     .dialog-header-image {
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
+    }
+
+    .dialog-card-content {
+        width: 100%;
+        height: 60%;
+    }
+
+    .dialog-card-actions {
+        width: 100%;
+        height: 20%;
     }

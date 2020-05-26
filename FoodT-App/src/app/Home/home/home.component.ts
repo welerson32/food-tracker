@@ -12,15 +12,14 @@ declare let google: any;
 })
 
 export class HomeComponent implements OnInit {
-  person: Person;
+  person: Person = new Person();
 
-  constructor(private Service: HomeService, private loginService: LoginService) { this.person = new Person(); }
+  constructor(private Service: HomeService, private loginService: LoginService) { this.updateSession(); }
 
   lat = -19.918622875284022;
   lng = -43.93859346530122;
 
   async ngOnInit() {
-    this.updateSession();
     await this.Service.GetGeoLocation().then(pos => {
       this.lat = pos.lat;
       this.lng = pos.lng;

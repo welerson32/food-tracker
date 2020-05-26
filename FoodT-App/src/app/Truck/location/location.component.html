@@ -62,7 +62,7 @@
                 </mat-form-field>
                 <br>
                 <mat-form-field>
-                    <mat-label>Number</mat-label>
+                    <mat-label>Numero</mat-label>
                     <input matInput placeholder="" formControlName="number" required autocomplete="off">
                 </mat-form-field>
                 <br>
@@ -84,7 +84,7 @@
             <div *ngIf="truck.location; else noAdress">
                 <p>Rua</p>
                 <span>{{truck.location.street}}</span>
-                <p>Number:</p>
+                <p>Numero:</p>
                 <span>{{truck.location.number}}</span>
                 <p>Bairro:</p>
                 <span>{{truck.location.neighborhood}}</span>
