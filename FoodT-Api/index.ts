@@ -19,5 +19,5 @@ server.get('/', (_, res) => {
 });
 
 server.listen(8080, () => {
-    console.log({ message: `Food Tracker API is running at http://localhost:8080`, version: "1.0" });
+    console.log({ message: `Food Tracking API is running at http://localhost:8080`, version: "1.0" });
 });

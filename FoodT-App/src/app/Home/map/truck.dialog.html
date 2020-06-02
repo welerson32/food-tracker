@@ -1,18 +1,16 @@
-<div class="dialog-content">
-    <mat-card class="dialog-card">
-        <mat-card-header>
-            <div class="dialog-card-header">
-                <div mat-card-avatar class="dialog-header-image"></div>
-                <mat-card-title>{{data.truckName}}</mat-card-title>
-                <mat-card-subtitle class="dialog-card-subtitle">{{data.type}}</mat-card-subtitle>
-                <button mat-button (click)="close()" class="btn-close">Fechar</button>
-            </div>
-        </mat-card-header>
-        <mat-divider></mat-divider>
-        <mat-card-content class="dialog-card-content">
-            <mat-list>
+<mat-card class="dialog-card">
+    <mat-card-header class="dialog-card-header">
+        <div mat-card-avatar class="dialog-header-image"></div>
+        <mat-card-title>{{data.truckName}}</mat-card-title>
+        <mat-card-subtitle>{{data.type}}</mat-card-subtitle>
+        <button mat-button (click)="close()" class="btn-close">Fechar</button>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content class="dialog-card-content">
+        <mat-list>
+            <div>
                 <mat-list-item *ngFor="let food of data.menu">
-                    <img matListAvatar src="..." alt="{{food.foodName}}-image">
+                    <div matListAvatar class="food-header-image"></div>
                     <h3 matLine><strong>{{food.foodName}}</strong> </h3>
                     <p matLine>
                         <span class="demo-2">{{food.description}} </span>
@@ -21,78 +19,78 @@
                         <span> {{food.price | currency : 'BRL'}} </span>
                     </p>
                 </mat-list-item>
-            </mat-list>
-        </mat-card-content>
-        <mat-divider></mat-divider>
-        <mat-card-actions class="dialog-card-actions">
-            <mat-accordion>
-                <mat-expansion-panel *ngIf="data.rating.rate != null && data.rating.personId === undefined ">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Avaliar Truck:
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Deixe aqui sua nota e comentário:
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <div>
-                        <button mat-button (click)="star1()">
-                            <mat-icon *ngIf="data.rating.rate < 1">star_border</mat-icon>
-                            <mat-icon *ngIf="data.rating.rate >= 1">star</mat-icon>
-                        </button>
-                        <button mat-button (click)="star2()">
-                            <mat-icon *ngIf="data.rating.rate < 2">star_border</mat-icon>
-                            <mat-icon *ngIf="data.rating.rate >= 2">star</mat-icon>
-                        </button>
-                        <button mat-button (click)="star3()">
-                            <mat-icon *ngIf="data.rating.rate < 3">star_border</mat-icon>
-                            <mat-icon *ngIf="data.rating.rate >= 3">star</mat-icon>
-                        </button>
-                        <button mat-button (click)="star4()">
-                            <mat-icon *ngIf="data.rating.rate < 4">star_border</mat-icon>
-                            <mat-icon *ngIf="data.rating.rate >= 4">star</mat-icon>
-                        </button>
-                        <button mat-button (click)="star5()">
-                            <mat-icon *ngIf="data.rating.rate < 5">star_border</mat-icon>
-                            <mat-icon *ngIf="data.rating.rate >= 5">star</mat-icon>
-                        </button>
-                        <button mat-button [mat-dialog-close]="data.rating">Ok</button>
-                    </div>
-                </mat-expansion-panel>
-                <mat-expansion-panel *ngIf="data.rating.rate && data.rating.personId">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Reavaliar Truck:
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Mude sua nota ou comentário
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <div>
-                        <button mat-button (click)="star1()">
-                            <mat-icon *ngIf="data.rating.rate < 1">star_border</mat-icon>
-                            <mat-icon *ngIf="data.rating.rate >= 1">star</mat-icon>
-                        </button>
-                        <button mat-button (click)="star2()">
-                            <mat-icon *ngIf="data.rating.rate < 2">star_border</mat-icon>
-                            <mat-icon *ngIf="data.rating.rate >= 2">star</mat-icon>
-                        </button>
-                        <button mat-button (click)="star3()">
-                            <mat-icon *ngIf="data.rating.rate < 3">star_border</mat-icon>
-                            <mat-icon *ngIf="data.rating.rate >= 3">star</mat-icon>
-                        </button>
-                        <button mat-button (click)="star4()">
-                            <mat-icon *ngIf="data.rating.rate < 4">star_border</mat-icon>
-                            <mat-icon *ngIf="data.rating.rate >= 4">star</mat-icon>
-                        </button>
-                        <button mat-button (click)="star5()">
-                            <mat-icon *ngIf="data.rating.rate < 5">star_border</mat-icon>
-                            <mat-icon *ngIf="data.rating.rate >= 5">star</mat-icon>
-                        </button>
-                        <button mat-button [mat-dialog-close]="data.rating">Ok</button>
-                    </div>
-                </mat-expansion-panel>
-            </mat-accordion>
-        </mat-card-actions>
-    </mat-card>
-</div>
+            </div>
+        </mat-list>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions class="dialog-card-actions">
+        <mat-accordion>
+            <mat-expansion-panel *ngIf="data.rating.rate != null && data.rating.personId === undefined ">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Avaliar Truck:
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Deixe aqui sua nota e comentário:
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div>
+                    <button mat-button (click)="star1()">
+                        <mat-icon *ngIf="data.rating.rate < 1">star_border</mat-icon>
+                        <mat-icon *ngIf="data.rating.rate >= 1">star</mat-icon>
+                    </button>
+                    <button mat-button (click)="star2()">
+                        <mat-icon *ngIf="data.rating.rate < 2">star_border</mat-icon>
+                        <mat-icon *ngIf="data.rating.rate >= 2">star</mat-icon>
+                    </button>
+                    <button mat-button (click)="star3()">
+                        <mat-icon *ngIf="data.rating.rate < 3">star_border</mat-icon>
+                        <mat-icon *ngIf="data.rating.rate >= 3">star</mat-icon>
+                    </button>
+                    <button mat-button (click)="star4()">
+                        <mat-icon *ngIf="data.rating.rate < 4">star_border</mat-icon>
+                        <mat-icon *ngIf="data.rating.rate >= 4">star</mat-icon>
+                    </button>
+                    <button mat-button (click)="star5()">
+                        <mat-icon *ngIf="data.rating.rate < 5">star_border</mat-icon>
+                        <mat-icon *ngIf="data.rating.rate >= 5">star</mat-icon>
+                    </button>
+                    <button mat-button [mat-dialog-close]="data.rating">Ok</button>
+                </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel *ngIf="data.rating.rate && data.rating.personId">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Reavaliar Truck:
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Mude sua nota ou comentário
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div>
+                    <button mat-button (click)="star1()">
+                        <mat-icon *ngIf="data.rating.rate < 1">star_border</mat-icon>
+                        <mat-icon *ngIf="data.rating.rate >= 1">star</mat-icon>
+                    </button>
+                    <button mat-button (click)="star2()">
+                        <mat-icon *ngIf="data.rating.rate < 2">star_border</mat-icon>
+                        <mat-icon *ngIf="data.rating.rate >= 2">star</mat-icon>
+                    </button>
+                    <button mat-button (click)="star3()">
+                        <mat-icon *ngIf="data.rating.rate < 3">star_border</mat-icon>
+                        <mat-icon *ngIf="data.rating.rate >= 3">star</mat-icon>
+                    </button>
+                    <button mat-button (click)="star4()">
+                        <mat-icon *ngIf="data.rating.rate < 4">star_border</mat-icon>
+                        <mat-icon *ngIf="data.rating.rate >= 4">star</mat-icon>
+                    </button>
+                    <button mat-button (click)="star5()">
+                        <mat-icon *ngIf="data.rating.rate < 5">star_border</mat-icon>
+                        <mat-icon *ngIf="data.rating.rate >= 5">star</mat-icon>
+                    </button>
+                    <button mat-button [mat-dialog-close]="data.rating">Ok</button>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-card-actions>
+</mat-card>

@@ -13,4 +13,9 @@ export class TruckService {
         return await this.truckRepo.getTrucks();
     }
 
+    async count(obj: any) {
+        obj = await this.truckRepo.countTrucks(obj);
+        return obj;
+    }
+
 }

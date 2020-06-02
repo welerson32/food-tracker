@@ -87,8 +87,8 @@ export class MenuComponent implements OnInit {
   }
 
 
-  goToRating() {
-    this.router.navigate(['truck/rating']);
+  goToHome() {
+    this.router.navigate(['truck/home']);
   }
 
   logout() {

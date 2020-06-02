@@ -34,6 +34,11 @@
 
         <div class="side-menu">
             <br>
+            <button type="button" mat-button (click)="goToHome()">
+                <mat-icon>home</mat-icon> &nbsp;
+                <span>Home</span>
+            </button>
+            <mat-divider></mat-divider>
             <button type="button" type="button" mat-button (click)="goToMenu()">
                 <mat-icon>restaurant_menu</mat-icon> &nbsp;
                 <span>Meu Cardápio</span>
@@ -43,47 +48,61 @@
                 <mat-icon>room</mat-icon> &nbsp;
                 <span>Localização Atual</span>
             </button>
-            <mat-divider></mat-divider>
-            <button type="button" mat-button (click)="goToRating()">
-                <mat-icon>star</mat-icon> &nbsp;
-                <span>Nota do Truck</span>
-            </button>
         </div>
 
     </mat-drawer>
 
     <div class="food-content">
         <div class="food-form">
-            <p class="title">Adicione um novo prato</p>
-            <form [formGroup]="foodForm">
-                <mat-form-field>
-                    <mat-label>Nome do Prato</mat-label>
-                    <input matInput placeholder="" #documentField name="nameField" formControlName="foodName" required
-                        autocomplete="off">
-                </mat-form-field>
-                <br>
-                <mat-form-field>
-                    <mat-label>Descrição</mat-label>
-                    <input matInput placeholder="" #documentField name="descriptionField" formControlName="description"
-                        required autocomplete="off">
-                </mat-form-field>
-                <br>
-                <mat-form-field>
-                    <mat-label>Preço</mat-label>
-                    <input type="number | currency:'BRL'" matInput placeholder="" #documentField name="priceField"
-                        formControlName="price" required autocomplete="off">
-                </mat-form-field>
+            <mat-card class="title-card">
+                <p class="title">Adicione um novo prato:</p>
+            </mat-card>
+            <mat-card class="form-card">
                 <div>
-                    <button mat-raised-button (click)="registry()">Salvar</button>
+                    <form [formGroup]="foodForm">
+                        <div class="name-price">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Nome do Prato</mat-label>
+                                <input matInput placeholder="" #documentField name="nameField"
+                                    formControlName="foodName" required autocomplete="off">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Preço</mat-label>
+                                <input type="number" matInput placeholder="" #documentField name="priceField"
+                                    formControlName="price" required autocomplete="off">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline" class="description">
+                                <mat-label>Descrição</mat-label>
+                                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                                    cdkAutosizeMinRows="6" cdkAutosizeMaxRows="6" #documentField name="descriptionField"
+                                    formControlName="description" required autocomplete="off"></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <button mat-raised-button (click)="registry()">Salvar</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </mat-card>
         </div>
         <div class="registred-foods">
-            <div *ngIf="truck.menu; else noFood">
+            <div *ngIf="truck.menu; else noFood" class="foods">
                 <p *ngFor="let food of truck.menu">
-                    <span>Nome: {{food.foodName}}</span>
-                    <span>Descrição: {{food.description}}</span>
-                    <span>Preço: {{food.price}}</span>
+                    <mat-card class="food-card">
+                        <mat-card-header>
+                            <div mat-card-avatar class="food-header-image"></div>
+                            <mat-card-title>{{food.foodName}}</mat-card-title>
+                            <mat-card-subtitle>{{food.price | currency : 'BRL'}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <p>
+                                {{food.description}}
+                            </p>
+                        </mat-card-content>
+                    </mat-card>
                 </p>
             </div>
             <ng-template class="current-adress" #noFood>Nenhum endereço registrado</ng-template>

@@ -1,34 +1,67 @@
+        :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+    margin: 8px 0;
+    }
+
+    p {
+    margin: 0;
+    }
+    
     .dialog-card{
         margin: auto;
         width: 95%;
         height: 95%;
     }
 
+    .btn-close {
+        position: absolute;
+        right: 2.5%;
+        background-color: #555555;
+    }
+
+    .food-card {
+        margin: 10px;
+        align-self: center;
+        max-width: 90%;
+    }
+
+    .food-header-image {
+        background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+        background-size: cover;
+    }
+    
+    .dialog-header-image {
+        background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+        background-size: cover;
+    }
+
     .dialog-card-header {
         width: 100%;
         height: 20%;
     }
-
-    .btn-close {
-        right: 0px;
-        background-color: #555555;
-    }
-
-    .dialog-card-subtitle {
-        color: #555555;
-    }
     
-    .dialog-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-    }
-
     .dialog-card-content {
+        align-content: center;
+        overflow: auto;
         width: 100%;
         height: 60%;
     }
-
+    
     .dialog-card-actions {
         width: 100%;
         height: 20%;
     }
+    

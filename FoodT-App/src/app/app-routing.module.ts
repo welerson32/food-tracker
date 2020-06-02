@@ -12,7 +12,6 @@ import { AuthGuardService } from './login/services/auth-guard.service';
 import { AuthGuardTruckService } from './login/services/auth-guard-truck.service';
 import { LocationComponent } from './Truck/location/location.component';
 import { MenuComponent } from './Truck/menu/menu.component';
-import { RatingComponent } from './Truck/rating/rating.component';
 
 
 const routes: Routes = [
@@ -26,8 +25,7 @@ const routes: Routes = [
   { path: 'person/home', component: HomeComponent, canActivate: [AuthGuardService] },
   { path: 'truck/home', component: TruckHomeComponent, canActivate: [AuthGuardTruckService] },
   { path: 'truck/location', component: LocationComponent, canActivate: [AuthGuardTruckService] },
-  { path: 'truck/menu', component: MenuComponent, canActivate: [AuthGuardTruckService] },
-  { path: 'truck/rating', component: RatingComponent, canActivate: [AuthGuardTruckService] }
+  { path: 'truck/menu', component: MenuComponent, canActivate: [AuthGuardTruckService] }
 
 ];
 

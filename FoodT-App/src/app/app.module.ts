@@ -63,7 +63,6 @@ import { TruckLoginComponent } from './login/truck/truck-login.component';
 import { TruckHomeComponent } from './Truck/home/truck-home.component';
 import { MenuComponent } from './Truck/menu/menu.component';
 import { LocationComponent } from './Truck/location/location.component';
-import { RatingComponent } from './Truck/rating/rating.component';
 
 
 @NgModule({
@@ -80,7 +79,6 @@ import { RatingComponent } from './Truck/rating/rating.component';
     TruckDialogComponent,
     MenuComponent,
     LocationComponent,
-    RatingComponent
   ],
   imports: [
     BrowserModule,

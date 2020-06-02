@@ -17,6 +17,11 @@ export class TruckRepo extends BaseMongoRepo {
         return await super.getAllTrucks();
     }
 
+    async countTrucks(obj: any) {
+        obj = await super.countTrucks(obj);
+        return obj;
+    }
+
     async register(obj: any) {
         obj = await super.insertOne(obj);
         return obj;

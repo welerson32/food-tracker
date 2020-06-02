@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../../Home/service/service.service';
 import { TruckService } from '../../Truck/services/truck.service';
 import { LoginService } from '../../login/services/login.service';
-import { Truck } from '../../../../../Library/Entities/Truck';
+import { Truck } from './../../../../../Library/Entities/Truck';
 import { Router } from '@angular/router';
 import { MatSlideToggleChange } from '@angular/material';
 
@@ -14,6 +14,8 @@ import { MatSlideToggleChange } from '@angular/material';
 export class TruckHomeComponent implements OnInit {
   truck: Truck = new Truck();
   isOpen: boolean;
+  rating: number;
+  trucksInProximity: number;
 
   lat = -19.918622875284022;
   lng = -43.93859346530122;
@@ -22,7 +24,7 @@ export class TruckHomeComponent implements OnInit {
     private Service: HomeService,
     private loginService: LoginService,
     private truckService: TruckService,
-    private router: Router) { this.updateSession(); }
+    private router: Router) { this.updateSession(); this.calcRating(); this.countTrucks(); }
 
   async ngOnInit() {
     await this.Service.GetGeoLocation().then(pos => {
@@ -45,6 +47,42 @@ export class TruckHomeComponent implements OnInit {
     window.location.reload();
   }
 
+  async countTrucks() {
+    this.trucksInProximity = Number(await this.truckService.trucksInProximity(this.truck));
+  }
+
+  calcRating() {
+    if (this.truck.rating) {
+      let one = 0;
+      let two = 0;
+      let thre = 0;
+      let four = 0;
+      let five = 0;
+      for (const rate of this.truck.rating) {
+        switch (rate.rate) {
+          case 1:
+            one++;
+            break;
+          case 2:
+            two++;
+            break;
+          case 3:
+            thre++;
+            break;
+          case 4:
+            four++;
+            break;
+          case 5:
+            five++;
+            break;
+          default:
+            break;
+        }
+      }
+      this.rating = ((5 * five) + (4 * four) + (3 * thre) + (2 * two) + (1 * one)) / (five + four + thre + two + one);
+    }
+  }
+
   goToMenu() {
     this.router.navigate(['truck/menu']);
   }
@@ -53,8 +91,8 @@ export class TruckHomeComponent implements OnInit {
     this.router.navigate(['truck/location']);
   }
 
-  goToRating() {
-    this.router.navigate(['truck/rating']);
+  goToHome() {
+    this.router.navigate(['truck/home']);
   }
 
   logout() {

@@ -51,6 +51,52 @@ export class MapComponent implements OnInit {
     this.map = new google.maps.Map(document.getElementById('map'), {
       zoom: 17,
       center: location,
+      styles: [
+        {
+          featureType: 'poi',
+          stylers: [
+            {
+              visibility: 'off'
+            }
+          ]
+        },
+        {
+          featureType: 'road.arterial',
+          elementType: 'geometry.fill',
+          stylers: [
+            {
+              color: '#feffcc'
+            }
+          ]
+        },
+        {
+          featureType: 'road.arterial',
+          elementType: 'geometry.stroke',
+          stylers: [
+            {
+              color: '#ffd152'
+            }
+          ]
+        },
+        {
+          featureType: 'road.highway',
+          elementType: 'geometry.fill',
+          stylers: [
+            {
+              color: '#fbff00'
+            }
+          ]
+        },
+        {
+          featureType: 'road.highway',
+          elementType: 'geometry.stroke',
+          stylers: [
+            {
+              color: '#ffc800'
+            }
+          ]
+        }
+      ],
       disableDefaultUI: true,
     });
 
@@ -61,12 +107,15 @@ export class MapComponent implements OnInit {
 
       location.lat = truck.location.lat;
       location.lng = truck.location.lng;
-      this.marker = new google.maps.Marker({ position: location, map: this.map });
+      this.marker = new google.maps.Marker({
+        position: location,
+        map: this.map
+      });
 
       this.marker.addListener('click', () => {
-        const rate = truck.rating.find(rating => rating.personId === this.person._id);
-        if (rate) {
-          this.rating = rate;
+        const atualRate = truck.rating.find(rating => rating.personId === this.person._id);
+        if (atualRate) {
+          this.rating = atualRate;
         } else {
           this.rating = new Rating();
           this.rating.rate = 0;
@@ -79,10 +128,22 @@ export class MapComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
           if (result) {
-            this.rating = result;
-            this.rating.personId = this.person._id;
-            truck.rating.push(this.rating);
-            this.truckService.updateTruck(truck);
+            let exist = false;
+            for (let rate of truck.rating) {
+              if (rate.personId === this.person._id) {
+                this.rating = result;
+                this.rating.personId = this.person._id;
+                rate = this.rating;
+                this.truckService.updateTruck(truck);
+                exist = true;
+              }
+            }
+            if (!exist) {
+              this.rating = result;
+              this.rating.personId = this.person._id;
+              truck.rating.push(this.rating);
+              this.truckService.updateTruck(truck);
+            }
           }
         });
       });

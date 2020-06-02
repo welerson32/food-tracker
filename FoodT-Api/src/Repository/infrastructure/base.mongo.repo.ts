@@ -44,7 +44,28 @@ export class BaseMongoRepo {
         try {
             client = await this.connect();
             const db = client.db(this.dbName);
-            return await db.collection(this.collectionName).find({ 'location.city': 'Belo Horizonte', 'open': true }).toArray()
+            return await db.collection(this.collectionName).find({ 'location.city': 'Belo Horizonte', 'open': true }).toArray();
+        } catch (err) {
+            throw err;
+        } finally {
+            if (client) {
+                client.close();
+            }
+        }
+    }
+
+    async countTrucks(obj: any) {
+        let client: MongoClient;
+        try {
+            const neighborhood = obj.location.neighborhood;
+            client = await this.connect();
+            const db = client.db(this.dbName);
+            let count = 0;
+            await db.collection(this.collectionName).find({ 'location.neighborhood': neighborhood, 'open': true }).count()
+                .then(function (numItems) {
+                    count = numItems - 1;
+                });
+            return count
         } catch (err) {
             throw err;
         } finally {

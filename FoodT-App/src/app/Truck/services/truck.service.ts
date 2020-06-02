@@ -11,4 +11,8 @@ export class TruckService {
     updateTruck(obj: any) {
         return this.http.post('http://localhost:8080/update/truck', obj).toPromise();
     }
+
+    trucksInProximity(obj: any) {
+        return this.http.post('http://localhost:8080/truck/count', obj).toPromise();
+    }
 }

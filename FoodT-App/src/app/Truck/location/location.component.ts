@@ -9,6 +9,8 @@ import { Truck } from './../../../../../Library/Entities/Truck';
 import { Location } from './../../../../../Library/Entities/Location';
 import { Router } from '@angular/router';
 
+declare let google: any;
+
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html',
@@ -23,6 +25,9 @@ export class LocationComponent implements OnInit {
 
   lat = -19.918622875284022;
   lng = -43.93859346530122;
+
+  map: any;
+  marker: any;
 
   constructor(
     private homeService: HomeService,
@@ -46,6 +51,7 @@ export class LocationComponent implements OnInit {
     });
     this.truck = JSON.parse(localStorage.getItem('FT_Truck_Session'));
     this.isOpen = this.truck.open;
+    this.initMap();
   }
 
   async updateSession() {
@@ -71,7 +77,7 @@ export class LocationComponent implements OnInit {
       if (confirm(`Deseja salvar o endereço "${this.searchResult.results[0].formatted_address}", como sua localização atual?`)) {
         this.location.lat = this.searchResult.results[0].geometry.location.lat;
         this.location.lng = this.searchResult.results[0].geometry.location.lng;
-        this.location.street = this.searchResult.results[0].address_components[1].long_name;
+        this.location.street = this.searchResult.results[0].address_components[1].short_name;
         this.location.number = this.searchResult.results[0].address_components[0].long_name;
         this.location.neighborhood = this.searchResult.results[0].address_components[2].long_name;
         this.location.city = this.searchResult.results[0].address_components[3].long_name;
@@ -96,6 +102,67 @@ export class LocationComponent implements OnInit {
     }
   }
 
+  initMap() {
+    const location = { lat: this.lat, lng: this.lng };
+    location.lat = this.truck.location.lat;
+    location.lng = this.truck.location.lng;
+
+    this.map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: location,
+      styles: [
+        {
+          featureType: 'poi',
+          stylers: [
+            {
+              visibility: 'off'
+            }
+          ]
+        },
+        {
+          featureType: 'road.arterial',
+          elementType: 'geometry.fill',
+          stylers: [
+            {
+              color: '#feffcc'
+            }
+          ]
+        },
+        {
+          featureType: 'road.arterial',
+          elementType: 'geometry.stroke',
+          stylers: [
+            {
+              color: '#ffd152'
+            }
+          ]
+        },
+        {
+          featureType: 'road.highway',
+          elementType: 'geometry.fill',
+          stylers: [
+            {
+              color: '#fbff00'
+            }
+          ]
+        },
+        {
+          featureType: 'road.highway',
+          elementType: 'geometry.stroke',
+          stylers: [
+            {
+              color: '#ffc800'
+            }
+          ]
+        }
+      ],
+      disableDefaultUI: true,
+    });
+
+    this.marker = new google.maps.Marker({ position: location, map: this.map });
+
+  }
+
   goToMenu() {
     this.router.navigate(['truck/menu']);
   }
@@ -104,8 +171,8 @@ export class LocationComponent implements OnInit {
     this.router.navigate(['truck/location']);
   }
 
-  goToRating() {
-    this.router.navigate(['truck/rating']);
+  goToHome() {
+    this.router.navigate(['truck/home']);
   }
 
   logout() {

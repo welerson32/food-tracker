@@ -12,4 +12,13 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.post('/count', async (req, res) => {
+    try {
+        const corpo = req.body;
+        const result = await service.count(corpo);
+        res.status(200).send(result.toString());
+    } catch (error) {
+        res.send(error)
+    }
+});
 module.exports = router;

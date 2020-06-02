@@ -34,6 +34,11 @@
 
         <div class="side-menu">
             <br>
+            <button type="button" mat-button (click)="goToHome()">
+                <mat-icon>home</mat-icon> &nbsp;
+                <span>Home</span>
+            </button>
+            <mat-divider></mat-divider>
             <button type="button" type="button" mat-button (click)="goToMenu()">
                 <mat-icon>restaurant_menu</mat-icon> &nbsp;
                 <span>Meu Cardápio</span>
@@ -43,57 +48,95 @@
                 <mat-icon>room</mat-icon> &nbsp;
                 <span>Localização Atual</span>
             </button>
-            <mat-divider></mat-divider>
-            <button type="button" mat-button (click)="goToRating()">
-                <mat-icon>star</mat-icon> &nbsp;
-                <span>Nota do Truck</span>
-            </button>
         </div>
 
     </mat-drawer>
     <div class="location-content">
         <div class="adress-form">
-            <p class="title">Onde você estara hoje?</p>
-
-            <form [formGroup]="adressForm">
-                <mat-form-field>
-                    <mat-label>Rua</mat-label>
-                    <input matInput placeholder="" formControlName="street" required autocomplete="off">
-                </mat-form-field>
-                <br>
-                <mat-form-field>
-                    <mat-label>Numero</mat-label>
-                    <input matInput placeholder="" formControlName="number" required autocomplete="off">
-                </mat-form-field>
-                <br>
-                <mat-form-field>
-                    <mat-label>Bairro</mat-label>
-                    <input matInput placeholder="" formControlName="neighborhood" required autocomplete="off">
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Cidade</mat-label>
-                    <input matInput placeholder="" formControlName="city" required autocomplete="off">
-                </mat-form-field>
-                <div>
-                    <button mat-raised-button (click)="search()">Procurar</button>
-                </div>
-            </form>
-
+            <mat-card class="title-card">
+                <p class="title">Onde você estara hoje?</p>
+            </mat-card>
+            <mat-card class="form-card">
+                <form [formGroup]="adressForm">
+                    <mat-form-field appearance="outline" class="input-street">
+                        <mat-label>Rua</mat-label>
+                        <input matInput placeholder="" formControlName="street" required autocomplete="off">
+                    </mat-form-field>
+                    &nbsp;
+                    &nbsp;
+                    <mat-form-field appearance="outline" class="input-number">
+                        <mat-label>Numero</mat-label>
+                        <input matInput placeholder="" formControlName="number" required autocomplete="off">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Bairro</mat-label>
+                        <input matInput placeholder="" formControlName="neighborhood" required autocomplete="off">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Cidade</mat-label>
+                        <input matInput placeholder="" formControlName="city" required autocomplete="off">
+                    </mat-form-field>
+                    <div>
+                        <button mat-raised-button (click)="search()">Procurar</button>
+                    </div>
+                </form>
+            </mat-card>
         </div>
         <div class="current-adress">
-            <div *ngIf="truck.location; else noAdress">
-                <p>Rua</p>
-                <span>{{truck.location.street}}</span>
-                <p>Numero:</p>
-                <span>{{truck.location.number}}</span>
-                <p>Bairro:</p>
-                <span>{{truck.location.neighborhood}}</span>
-                <p>Cidade:</p>
-                <span>{{truck.location.city}}</span>
-                <p>Estado:</p>
-                <span>{{truck.location.uf}}</span>
-            </div>
-            <ng-template class="current-adress" #noAdress>Nenhum endereço registrado</ng-template>
+            <mat-card class="current-card">
+                <div *ngIf="truck.location; else noAdress">
+                    <table class="example-full-width" cellspacing="0">
+                        <tr>
+                            <td>
+                                <mat-label>Rua/Avenida: </mat-label>
+                                <br>
+                                <span>{{truck.location.street}}</span>
+                            </td>
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            <td>
+                                <mat-label>Nº: </mat-label>
+                                <br>
+                                <span>{{truck.location.number}}</span>
+                            </td>
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            <td>
+                                <mat-label>Bairro: </mat-label>
+                                <br>
+                                <span>{{truck.location.neighborhood}}</span>
+                            </td>
+                        </tr>
+                        <br>
+                        <tr>
+                            <td>
+                                <mat-label>Cidade: </mat-label>
+                                <br>
+                                <span>{{truck.location.city}}</span>
+                            </td>
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            <td>
+                                <mat-label>Estado: </mat-label>
+                                <br>
+                                <span>{{truck.location.uf}}</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <ng-template class="current-adress" #noAdress>Nenhum endereço registrado</ng-template>
+            </mat-card>
+            <mat-card *ngIf="truck.location" class="current-map">
+                <div id="map"></div>
+            </mat-card>
         </div>
     </div>
 

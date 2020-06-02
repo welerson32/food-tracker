@@ -7,6 +7,7 @@
             </button>
         </div>
     </div>
+
     <mat-drawer #drawer class="sideBar-sidenav" mode="over">
         <div class="divCard">
             <mat-card class="sideBar-card">
@@ -30,8 +31,14 @@
                 </mat-card-actions>
             </mat-card>
         </div>
+
         <div class="side-menu">
             <br>
+            <button type="button" mat-button (click)="goToHome()">
+                <mat-icon>home</mat-icon> &nbsp;
+                <span>Home</span>
+            </button>
+            <mat-divider></mat-divider>
             <button type="button" type="button" mat-button (click)="goToMenu()">
                 <mat-icon>restaurant_menu</mat-icon> &nbsp;
                 <span>Meu Cardápio</span>
@@ -41,12 +48,11 @@
                 <mat-icon>room</mat-icon> &nbsp;
                 <span>Localização Atual</span>
             </button>
-            <mat-divider></mat-divider>
-            <button type="button" mat-button (click)="goToRating()">
-                <mat-icon>star</mat-icon> &nbsp;
-                <span>Nota do Truck</span>
-            </button>
         </div>
-    </mat-drawer>
 
+    </mat-drawer>
+    <div>
+        Sua nota é: {{rating.toFixed(1)}}
+        Trucks na sua região: {{trucksInProximity}}
+    </div>
 </mat-drawer-container>
