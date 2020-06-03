@@ -5,6 +5,54 @@
         <mat-card-subtitle>{{data.type}}</mat-card-subtitle>
         <button mat-button (click)="close()" class="btn-close">Fechar</button>
     </mat-card-header>
+    <div class="header-address">
+        <table cellspacing="0">
+            <tr>
+                <td>
+                    <mat-label>Rua/Avenida: </mat-label>
+                    <br>
+                    <span>{{data.location.street}}</span>
+                </td>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <td>
+                    <mat-label>Nº: </mat-label>
+                    <br>
+                    <span>{{data.location.number}}</span>
+                </td>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <td>
+                    <mat-label>Bairro: </mat-label>
+                    <br>
+                    <span>{{data.location.neighborhood}}</span>
+                </td>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <td>
+                    <mat-label>Cidade: </mat-label>
+                    <br>
+                    <span>{{data.location.city}}</span>
+                </td>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <td>
+                    <mat-label>Estado: </mat-label>
+                    <br>
+                    <span>{{data.location.uf}}</span>
+                </td>
+            </tr>
+        </table>
+        <button mat-button (click)="goTo()" class="btn-go">Ir</button>
+    </div>
     <mat-divider></mat-divider>
     <mat-card-content class="dialog-card-content">
         <mat-list>

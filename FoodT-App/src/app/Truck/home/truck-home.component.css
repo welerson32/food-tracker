@@ -68,8 +68,54 @@
     }
 
     .title { 
-        font-size: 50pt;
+        font-size: 40pt;
         color: #555555;
+    }
+
+    .subtitle{
+        font-size: 25pt;
+        color: #555555;
+    }
+
+    .title-card {
+        width: 96%;
+        margin: 10px;
+    }
+
+    .metrics {
+        width: 100%;
+    }
+
+    .rating{
+        position: absolute;
+        width: 50%;
+        left: 0px;
+    }
+
+    .rating-card{
+        width: 92.5%;
+        margin: 10px;
+    }
+
+    .rating-card-content{
+        font-size: 100pt;
+        margin: 10px;
+    }
+
+    .trucksInProximity {
+        position: absolute;
+        width: 50%;
+        right: 0px;
+    }
+
+    .tip-card {
+        width: 92.5%;
+        margin: 10px;
+    }
+
+    .tip-card-content {
+        font-size: 100pt;
+        margin: 10px;
     }
 
     .menu-button {

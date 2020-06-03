@@ -23,6 +23,10 @@ export class HomeService {
 
   }
 
+  goTo(params: string) {
+    window.location.href = `https://www.google.com/maps/dir/?api=1&destination=${params}`;
+  }
+
   logoutPerson(confirm: boolean) {
     if (confirm) {
       localStorage.removeItem('FT_Person_Session');

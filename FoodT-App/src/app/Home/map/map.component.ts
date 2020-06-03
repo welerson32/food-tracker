@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HomeService } from './../service/service.service';
 import { Truck } from '../../../../../Library/Entities/Truck';
+import { Location as truckLocation } from '../../../../../Library/Entities/Location';
 import { TruckMenu } from '../../../../../Library/Entities/TruckMenu';
 import { Rating } from '../../../../../Library/Entities/Rating';
 import { Person } from '../../../../../Library/Entities/Person';
@@ -11,7 +12,7 @@ export interface DialogData {
   truckName: string;
   type: string;
   menu: TruckMenu[];
-  location: Location;
+  location: truckLocation;
   rating: Rating;
 }
 
@@ -109,7 +110,8 @@ export class MapComponent implements OnInit {
       location.lng = truck.location.lng;
       this.marker = new google.maps.Marker({
         position: location,
-        map: this.map
+        map: this.map,
+        icon: '../../assets/images/truck-icon.png'
       });
 
       this.marker.addListener('click', () => {
@@ -123,7 +125,7 @@ export class MapComponent implements OnInit {
         const dialogRef = this.dialog.open(TruckDialogComponent, {
           height: '80%',
           width: '80%',
-          data: { truckName: truck.truckName, menu: truck.menu, location: truck, type: truck.type, rating: this.rating },
+          data: { truckName: truck.truckName, menu: truck.menu, location: truck.location, type: truck.type, rating: this.rating },
         });
 
         dialogRef.afterClosed().subscribe(result => {
@@ -161,7 +163,12 @@ export class TruckDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<TruckDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+    @Inject(MAT_DIALOG_DATA) public data: DialogData, private service: HomeService) { }
+
+  goTo() {
+    const parameters = `${this.data.location.number},+${this.data.location.street.replace(/ /g, '+')},+${this.data.location.neighborhood.replace(/ /g, '+')},+${this.data.location.city.replace(/ /g, '+')}`;
+    this.service.goTo(parameters);
+  }
 
   close(): void {
     this.dialogRef.close();

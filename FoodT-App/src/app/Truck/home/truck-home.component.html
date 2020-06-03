@@ -52,7 +52,43 @@
 
     </mat-drawer>
     <div>
-        Sua nota é: {{rating.toFixed(1)}}
-        Trucks na sua região: {{trucksInProximity}}
+        <div>
+            <mat-card class="title-card">
+                <p class="title">
+                    Olá {{truck.ownerName}}!
+                </p>
+                <p class="subtitle">
+                    Aqui vão algumas métricas pro seu truck:
+                </p>
+            </mat-card>
+        </div>
+        <div class="metrics">
+            <div class="rating">
+                <mat-card class="rating-card">
+                    <mat-card-header>
+                        <mat-card-title>
+                            Sua nota é:
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-divider></mat-divider>
+                    <div class="rating-card-content">
+                        {{rating.toFixed(1)}}
+                    </div>
+                </mat-card>
+            </div>
+            <div class="trucksInProximity">
+                <mat-card class="tip-card">
+                    <mat-card-header>
+                        <mat-card-title>
+                            Trucks na sua região:
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-divider></mat-divider>
+                    <div class="tip-card-content">
+                        {{trucksInProximity}}
+                    </div>
+                </mat-card>
+            </div>
+        </div>
     </div>
 </mat-drawer-container>
