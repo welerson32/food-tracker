@@ -18,6 +18,7 @@ router.post('/truck', async (req, res) => {
     try {
         const corpo = req.body;
         const result = await service.updateTruck(corpo)
+        console.log('atualizado')
         res.status(200).send(result)
     } catch (error) {
         res.send(error)

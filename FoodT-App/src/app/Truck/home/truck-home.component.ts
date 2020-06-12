@@ -14,8 +14,10 @@ import { MatSlideToggleChange } from '@angular/material';
 export class TruckHomeComponent implements OnInit {
   truck: Truck = new Truck();
   isOpen: boolean;
-  rating: number;
-  trucksInProximity: number;
+  // tslint:disable-next-line: no-inferrable-types
+  rating: number = 0;
+  // tslint:disable-next-line: no-inferrable-types
+  trucksInProximity: number = 0;
 
   lat = -19.918622875284022;
   lng = -43.93859346530122;
@@ -24,7 +26,7 @@ export class TruckHomeComponent implements OnInit {
     private Service: HomeService,
     private loginService: LoginService,
     private truckService: TruckService,
-    private router: Router) { this.updateSession(); this.calcRating(); this.countTrucks(); }
+    private router: Router) { this.updateSession(); }
 
   async ngOnInit() {
     await this.Service.GetGeoLocation().then(pos => {
@@ -33,6 +35,8 @@ export class TruckHomeComponent implements OnInit {
     });
     this.truck = JSON.parse(localStorage.getItem('FT_Truck_Session'));
     this.isOpen = this.truck.open;
+    this.calcRating();
+    this.countTrucks();
   }
 
   async updateSession() {
@@ -48,7 +52,10 @@ export class TruckHomeComponent implements OnInit {
   }
 
   async countTrucks() {
-    this.trucksInProximity = Number(await this.truckService.trucksInProximity(this.truck));
+    const countResult = Number(await this.truckService.trucksInProximity(this.truck));
+    if (countResult) {
+      this.trucksInProximity = countResult;
+    }
   }
 
   calcRating() {
@@ -80,6 +87,8 @@ export class TruckHomeComponent implements OnInit {
         }
       }
       this.rating = ((5 * five) + (4 * four) + (3 * thre) + (2 * two) + (1 * one)) / (five + four + thre + two + one);
+    } else {
+      this.rating = 0;
     }
   }
 
